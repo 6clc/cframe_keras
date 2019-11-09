@@ -5,7 +5,8 @@ import os
 
 class BasicLearner(object):
     def __init__(self, model_manager: ModelManager,
-                 dl_manager: ClassificationGeneratorManager):
+                 dl_manager: ClassificationGeneratorManager,
+                 loss, optimizer, metrics):
         self.model_manager = model_manager
         self.dl_manager = dl_manager
 
@@ -20,6 +21,10 @@ class BasicLearner(object):
         self.running_score = dict()
         self.best_para = None
 
+        self.model.compile(optimizer=optimizer,
+                           loss=loss,
+                           metrics=metrics)
+
         self._init()
 
     def _init(self):
@@ -31,4 +36,12 @@ class BasicLearner(object):
             os.makedirs(self.summary_writer_dir)
 
     def train(self, num_epoches):
-        print(self.model.summary())
+        history = self.model.fit_generator(
+            self.train_dl,
+            use_multiprocessing=False,
+            validation_data=self.valid_dl,
+            workers=1,
+            epochs=num_epoches
+        )
+        return history
+
