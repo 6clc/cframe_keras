@@ -1,4 +1,4 @@
-from keras.utils import Sequence
+from tensorflow.python.keras.utils.data_utils import Sequence
 import numpy as np
 import pandas as pd
 import os
