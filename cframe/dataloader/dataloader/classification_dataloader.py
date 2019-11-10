@@ -1,11 +1,12 @@
-from tensorflow.python.keras.utils.data_utils import Sequence
+# from tensorflow.python.keras.utils.data_utils import Sequence
 import numpy as np
 import pandas as pd
 import os
 import cv2
+from tensorflow.keras.utils import Sequence
 
 
-class ClassificationGenerator(Sequence):
+class ClassificationDataloader(Sequence):
     def __init__(self, config, mode, shuffle, random_state=2019):
         self.config = config
         self.mode = mode
@@ -13,15 +14,16 @@ class ClassificationGenerator(Sequence):
         self.batch_size = self.config['batch_size']
         self.shuffle = shuffle
         self.random_state = random_state
-        self.dim = self.config['dim']
-        self.n_channels = self.config['n_channels']
-        self.n_classes = self.config['n_classes']
+
+        self.resize = self.config['resize']
+        self.in_channels = self.config['in_channels']
+
         self.root_dir = self.config['root_dir']
         self.dataset_dir = self.config['dataset_dir']
         self.csv_dir = self.config['csv_dir']
         self.data_name = self.config['data_name']
         self.mode = mode
-        self.on_epoch_end()
+
         self.df = pd.read_csv(
             os.path.join(self.root_dir,
                          self.csv_dir,
@@ -30,7 +32,7 @@ class ClassificationGenerator(Sequence):
         )
         self.list_IDs = [i for i in range(len(self.df))]
 
-        self._init()
+        self.on_epoch_end()
 
     def __len__(self):
         return int(np.floor(len(self.list_IDs)) / self.batch_size)
@@ -44,14 +46,15 @@ class ClassificationGenerator(Sequence):
         y = self.__generate_y(list_IDs_batch)
         return X, y
 
-    def _init(self):
+    def on_epoch_end(self):
         self.indexes = np.arange(len(self.list_IDs))
         if self.shuffle:
             np.random.seed(self.random_state)
             np.random.shuffle(self.indexes)
+        # print('shuffle again')
 
     def  __generate_X(self, list_IDs_batch):
-        X = np.empty((self.batch_size, *self.dim, self.n_channels))
+        X = np.empty((self.batch_size, *self.resize, self.in_channels))
         for i, ID in enumerate(list_IDs_batch):
             img_name = self.df['img'][ID]
             img_path = os.path.join(self.root_dir, img_name)
@@ -70,7 +73,7 @@ class ClassificationGenerator(Sequence):
     def __load_rgb(self, img_path):
         img = cv2.imread(img_path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, self.dim, cv2.INTER_LINEAR)
+        img = cv2.resize(img, self.resize, cv2.INTER_LINEAR)
         img = img.astype(np.float32) / 255.
         return img
 
@@ -82,9 +85,9 @@ if __name__ == '__main__':
                   csv_dir='CSVs',
                   n_classes=20,
                   batch_size=4,
-                  dim=(224, 224),
-                  n_channels=3,
+                  resize=(224, 224),
+                  in_channels=3,
                   )
-    dg = ClassificationGenerator(config, mode='train', shuffle=True)
+    dg = ClassificationDataloader(config, mode='train', shuffle=True)
     for X, y in dg:
         print(X.shape, y)

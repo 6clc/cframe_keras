@@ -1,11 +1,10 @@
 from cframe.models import ModelManager
-from cframe.data_generator import ClassificationGeneratorManager
 import os
 
 
 class BasicLearner(object):
     def __init__(self, model_manager: ModelManager,
-                 dl_manager: ClassificationGeneratorManager,
+                 dl_manager,
                  loss, optimizer, metrics):
         self.model_manager = model_manager
         self.dl_manager = dl_manager

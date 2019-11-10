@@ -4,6 +4,7 @@ DATA_INFO = dict(
 
     leaf=dict(dir='leaf-classification', n_classes=99,
               columns=['img', 'label']),
+    garbage=dict(dir='garbage_classify', n_classes=40),
 
     DUT=dict(dir='DUT-OMRON',
              columns=['img', 'fixation', 'saliency']),
@@ -26,12 +27,12 @@ DATA_INFO = dict(
 DATA_ROOT = dict(
     root_dir='/Volumes/data2/Data',
     dataset_dir='DataSets',
-    data_name='leaf-classification',
+    data_name='garbage',
     csv_dir='CSVs',
     n_classes=20,
     batch_size=4,
-    dim=(224, 224),
-    n_channels=3,
+    resize=(224, 224),
+    in_channels=3,
     data_info=DATA_INFO['CamVid'],
     label_name='segment'
 )
