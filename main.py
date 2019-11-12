@@ -5,13 +5,17 @@ from cframe.models import ModelManager
 from cframe.learner import BasicLearner
 from keras.datasets import cifar10
 import keras
-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 if __name__ == '__main__':
+    from keras import backend as K
+
+    K.tensorflow_backend._get_available_gpus()
     data_config = DataConfiger.get_data_config('garbage')
     dl_manager = ClassificationDataloaderManager(data_config)
 
-    model_config = ModelConfiger.get_model_config('resnet_v1')
+    model_config = ModelConfiger.get_model_config('resnet50')
     model_manager = ModelManager(model_config)
 
     learner = BasicLearner(model_manager, dl_manager,

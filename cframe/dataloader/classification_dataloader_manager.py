@@ -7,17 +7,16 @@ class ClassificationDataloaderManager(object):
 
     def get_train_dl(self):
         return ClassificationDataloader(config=self.config,
-                                       mode='train',
-                                       shuffle=True
-                                       )
+                                        mode='train',
+                                        shuffle=True
+                                        )
 
     def get_valid_dl(self):
         return ClassificationDataloader(config=self.config,
-                                       mode='valid',
-                                       shuffle=False)
+                                        mode='valid',
+                                        shuffle=False)
 
     def get_test_dl(self):
         return ClassificationDataloader(config=self.config,
-                                       mode='test',
-                                       shuffle=False)
-
+                                        mode='test',
+                                        shuffle=False)

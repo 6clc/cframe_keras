@@ -64,10 +64,10 @@ class ClassificationDataloader(Sequence):
         return X
 
     def __generate_y(self, list_IDs_batch):
-        y = np.empty((self.batch_size, 1), dtype=int)
+        y = np.empty((self.batch_size), dtype=int)
         for i, ID in enumerate(list_IDs_batch):
             label = self.df['label'][ID]
-            y[i, 0] = label
+            y[i] = label
         return y
 
     def __load_rgb(self, img_path):

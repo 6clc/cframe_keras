@@ -1,6 +1,6 @@
 from cframe.models import ModelManager
 import os
-
+import tensorflow  as tf
 
 class BasicLearner(object):
     def __init__(self, model_manager: ModelManager,
@@ -43,4 +43,5 @@ class BasicLearner(object):
             epochs=num_epoches
         )
         return history
+        # -
 

@@ -7,12 +7,11 @@ MODEL_DICT = dict(
     #     model=efficient_net_b0,
     #     config=dict()
     # ),
-    resnet_v1=dict(
-        name='resnet_v1',
-        model=resnet_v1,
+    resnet50=dict(
+        name='resnet50',
+        model=resnet50,
         config=dict(
             input_shape=(224, 224, 3),
-            depth=8,
             num_classes=40
         )
     )
