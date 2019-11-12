@@ -1,11 +1,11 @@
 import numpy as np
-from keras.applications.resnet50 import ResNet50, preprocess_input
-from keras.models import Model, load_model
-from keras.layers import Dense, Flatten
-from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D
-from keras import backend as K
-from keras.layers import Input
-from keras import regularizers
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D
+from tensorflow.keras import backend as K
+from tensorflow.keras.layers import Input
+from tensorflow.keras import regularizers
 
 
 def resnet50(config):
@@ -13,7 +13,7 @@ def resnet50(config):
     num_classes = config['num_classes']
     K.set_learning_phase(0)
     base_model = ResNet50(weights='imagenet', include_top=False,
-                          input_shape=input_shape )
+                          input_shape=input_shape)
     K.set_learning_phase(1)
 
     x = base_model.output
