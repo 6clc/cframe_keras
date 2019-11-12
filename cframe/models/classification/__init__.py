@@ -1,1 +1,2 @@
-from .simplenet import *
+from .resnet import *
+from .efficientnet import *

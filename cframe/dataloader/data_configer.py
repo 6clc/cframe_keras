@@ -25,7 +25,7 @@ DATA_INFO = dict(
 )
 
 DATA_ROOT = dict(
-    root_dir='/Volumes/data2/Data',
+    root_dir='/home/he/Data',
     dataset_dir='DataSets',
     data_name='garbage',
     csv_dir='CSVs',
