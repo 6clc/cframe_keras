@@ -3,8 +3,6 @@ from cframe.dataloader import ClassificationDataloaderManager
 from cframe.models import ModelConfiger
 from cframe.models import ModelManager
 from cframe.learner import BasicLearner
-from keras.datasets import cifar10
-import keras
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
