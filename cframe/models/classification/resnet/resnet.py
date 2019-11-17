@@ -13,7 +13,7 @@ def resnet50(config):
     num_classes = config['num_classes']
     weights = config['weights']
     K.set_learning_phase(0)
-    base_model = ResNet50(weights='imagenet', include_top=False,
+    base_model = ResNet50(weights=weights, include_top=False,
                           input_shape=input_shape)
     K.set_learning_phase(1)
     x = base_model.output
