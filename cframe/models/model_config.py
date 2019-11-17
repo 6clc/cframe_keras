@@ -12,7 +12,8 @@ MODEL_DICT = dict(
         model=resnet50,
         config=dict(
             input_shape=(224, 224, 3),
-            num_classes=40
+            num_classes=40,
+            weights='imagenet'
         )
     )
 )
