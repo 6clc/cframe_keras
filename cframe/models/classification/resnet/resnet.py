@@ -1,12 +1,11 @@
 import numpy as np
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
-from tensorflow.keras.models import Model, load_model
-from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D, GlobalMaxPooling2D
-from tensorflow.keras import backend as K
-from tensorflow.keras.layers import Input
-from tensorflow.keras import regularizers
-from tensorflow.keras import layers
+from tensorflow.python.keras.applications.resnet50 import ResNet50, preprocess_input
+from tensorflow.python.keras.models import Model, load_model
+from tensorflow.python.keras.layers import Dense, Flatten
+from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D, GlobalMaxPooling2D
+from tensorflow.python.keras import backend as K
+from tensorflow.python.keras import regularizers
+from tensorflow.python.keras import layers
 
 
 def resnet50(config):
