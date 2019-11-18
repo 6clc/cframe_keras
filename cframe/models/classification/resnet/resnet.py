@@ -1,5 +1,5 @@
 import numpy as np
-from tensorflow.python.keras.applications.resnet50 import ResNet50, preprocess_input
+from tensorflow.python.keras.applications import ResNet50
 from tensorflow.python.keras.models import Model, load_model
 from tensorflow.python.keras.layers import Dense, Flatten
 from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D, GlobalMaxPooling2D
