@@ -28,6 +28,7 @@ def resnet50(config):
 
     # Say not to train first layer (ResNet) model as it is already trained
     model.layers[0].trainable = False
+    return model
 # def resnet50(config):
 #     input_shape = config['input_shape']
 #     num_classes = config['num_classes']
