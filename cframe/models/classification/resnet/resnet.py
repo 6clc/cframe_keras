@@ -6,6 +6,7 @@ from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, BatchNormalizat
 from tensorflow.python.keras import backend as K
 from tensorflow.python.keras import regularizers
 from tensorflow.python.keras import layers
+from tensorflow.python.keras.models import Sequential
 
 
 def resnet50(config):
