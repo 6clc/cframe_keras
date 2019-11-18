@@ -43,10 +43,9 @@ class BasicLearner(object):
     def train(self, num_epoches):
         history = self.model.fit_generator(
             self.train_dl,
-            use_multiprocessing=False,
             validation_data=self.valid_dl,
-            workers=1,
-            epochs=num_epoches
+            epochs=num_epoches,
+            callbacks=self.callbacks
         )
         return history
         # -
