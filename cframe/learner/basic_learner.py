@@ -1,7 +1,7 @@
 from cframe.models import ModelManager
 import os
 import tensorflow  as tf
-from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.python.keras.callbacks import ModelCheckpoint
 
 class BasicLearner(object):
     def __init__(self, model_manager: ModelManager,
