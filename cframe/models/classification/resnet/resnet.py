@@ -6,6 +6,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Gl
 from tensorflow.keras import backend as K
 from tensorflow.keras.layers import Input
 from tensorflow.keras import regularizers
+from tensorflow.keras import layers
 
 
 def resnet50(config):
@@ -21,7 +22,7 @@ def resnet50(config):
     ap = GlobalAveragePooling2D(name='average_pool')(x)
     mp = GlobalMaxPooling2D(name='max_pool')(x)
     # print('ap ', ap.shape, 'mp ', mp.shape)
-    x = K.concatenate([ap, mp], axis=-1)
+    x = layers.concatenate([ap, mp], axis=-1)
     # print('cat', x.shape)
     # x = K.batch_flatten(x)
     # print('attention shape', x.shape)
