@@ -19,6 +19,8 @@ DATA_INFO = dict(
                               columns=['img', 'instance', 'saliency']),
 
     ECSSD=dict(dir='ECSSD', n_classes=2),
+    SALICON=dict(dir='SALICON',
+                 columns=['img', 'saliency', 'fixation']),
 
     MSRA_B_InstanceSaliency1000=dict(dir='MSRA_B_InstanceSaliency1000', n_classes=2,
                                      columns=['img', 'instance', 'saliency'])
@@ -34,7 +36,6 @@ DATA_ROOT = dict(
     resize=(224, 224),
     in_channels=3,
     data_info=DATA_INFO['CamVid'],
-    label_name='segment'
 )
 
 
